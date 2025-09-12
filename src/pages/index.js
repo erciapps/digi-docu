@@ -110,7 +110,7 @@ export default function Home() {
 
           <div style={{display:'flex', gap:12, flexWrap:'wrap', marginTop:16}}>
             <a href="/docs/intro" style={btnPrimary}>Entrar al temario →</a>
-            <a href="/blog" style={btnGhost}>Novedades del módulo</a>
+           {/* <a href="/blog" style={btnGhost}>Novedades del módulo</a> */}
           </div>
         </header>
 
@@ -123,49 +123,25 @@ export default function Home() {
           {/* Guía rápida */}
           <article className="lift-card" style={cardStyle('#0a1930','#0d47a1')}>
             <div className="glow" style={glowStyle}></div>
-            <span style={pill('#B58900')}>Inicio</span>
-            <h3 style={title}>Guía rápida</h3>
+            <span style={pill('#B58900')}>1ªEV</span>
+            <h3 style={title}>UT1 - Digitalización. Creación de entornos IT y OT </h3>
             <p style={desc}>
-              Requisitos, setup, estructura de carpetas, y cómo empezar.
+              Digitalización. Creación de entornos IT y OT
             </p>
-            <a href="/docs/intro" style={btn('#B58900')}>Ver guía <span style={arrow}>→</span></a>
+            <div style={{ textAlign: 'center' }}>
+              <a href="/docs/category/ut1---entornos-it-y-ot" style={btn('#B58900')}>
+                IR <span style={arrow}>→</span>
+              </a>
+            </div>
+            
           </article>
 
-          {/* Temario */}
-          <article className="lift-card" style={cardStyle('#0a1930','#0d47a1')}>
-            <div className="glow" style={glowStyle}></div>
-            <span style={pill('#B58900')}>Docs</span>
-            <h3 style={title}>Temario</h3>
-            <p style={desc}>
-              Contenidos organizados por unidades: XAML, estilos, MVVM, componentes, accesibilidad…
-            </p>
-            <a href="/docs/temario" style={btn('#B58900')}>Abrir temario <span style={arrow}>→</span></a>
-          </article>
+         
 
-          {/* Prácticas */}
-          <article className="lift-card" style={cardStyle('#0a1930','#0d47a1')}>
-            <div className="glow" style={glowStyle}></div>
-            <span style={pill('#B58900')}>Trabajo</span>
-            <h3 style={title}>Prácticas</h3>
-            <p style={desc}>
-              Enunciados, entregas y rúbricas: ejercicios guiados y retos.
-            </p>
-            <a href="/docs/practicas/overview" style={btn('#B58900')}>Ver prácticas <span style={arrow}>→</span></a>
-          </article>
 
-          {/* Recursos */}
-          <article className="lift-card" style={cardStyle('#0a1930','#0d47a1')}>
-            <div className="glow" style={glowStyle}></div>
-            <span style={pill('#B58900')}>Extra</span>
-            <h3 style={title}>Recursos</h3>
-            <p style={desc}>
-              Snippets, enlaces útiles, bibliografía y referencias.
-            </p>
-            <a href="/docs/recursos" style={btn('#B58900')}>Abrir recursos <span style={arrow}>→</span></a>
-          </article>
         </section>
 
-        {/* CTA final */}
+        {/* CTA final 
         <section style={{maxWidth:1100, margin:'0 auto 56px', padding:'0 16px'}}>
           <div style={{
             borderRadius:18, padding:20,
@@ -181,7 +157,7 @@ export default function Home() {
               <a href="/" style={btnGhost}>Volver a ErciApps</a>
             </div>
           </div>
-        </section>
+        </section>*/}
       </div>
     </Layout>
   );
