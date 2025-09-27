@@ -1,12 +1,4 @@
-// @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
-
 import {themes as prismThemes} from 'prism-react-renderer';
-
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -14,29 +6,35 @@ const config = {
   tagline: 'Erciapps are cool',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
   url: 'https://digi-erciapps.sytes.net',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
-  organizationName: 'erciapps', // Usually your GitHub org/user name.
-  projectName: 'digi-docu', // Usually your repo name.
+  organizationName: 'erciapps',
+  projectName: 'digi-docu',
   trailingSlash: false,
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+
+  // ✅ Nueva forma de configurar advertencias de Markdown
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownImages: 'warn',
+    },
+  },
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  plugins: [
+    '@docusaurus/plugin-ideal-image',
+    'docusaurus-plugin-image-zoom',   // 👈 añadido el plugin de zoom
+  ],
 
   presets: [
     [
@@ -45,10 +43,6 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-         // editUrl:
-           // 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
@@ -56,14 +50,6 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-         // editUrl:
-         //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -72,80 +58,41 @@ const config = {
     ],
   ],
 
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
-      navbar: {
-        title: 'ErciApps',
-        logo: {
+  themeConfig: {
+    image: 'img/docusaurus-social-card.jpg',
+    navbar: {
+      title: 'ErciApps',
+      logo: {
         alt: 'ErciApps',
         src: 'img/logo.svg',
-        href: 'https://erciapps.sytes.net', // aquí fuerzas el destino
+        href: 'https://erciapps.sytes.net',
       },
-        items: [
-         
-          {to: '/', label: 'INICIO', position: 'left'},
-          {to: '/docs/category/ut1---entornos-it-y-ot', label: 'UT1', position: 'left'},
-          //{
-         //   href: 'https://github.com/facebook/docusaurus',
-         //   label: 'GitHub',
-         //   position: 'right',
-        //  },
-        ],
+      items: [
+        {to: '/', label: 'INICIO', position: 'left'},
+        {to: '/docs/category/ut1---entornos-it-y-ot', label: 'UT1', position: 'left'},
+      ],
+    },
+    footer: {
+      style: 'dark',
+      copyright: `Copyright © ${new Date().getFullYear()} ErciApps`,
+    },
+    prism: {
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
+    },
+
+    // 👇 configuración del zoom
+    zoom: {
+      selector: '.markdown img, .markdown picture img',
+      background: {
+        light: 'rgb(255, 255, 255)',
+        dark: 'rgb(50, 50, 50)',
       },
-      footer: {
-        style: 'dark',
-        /*
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-            ],
-          },
-        ],*/
-        copyright: `Copyright © ${new Date().getFullYear()} ErciApps`,
+      config: {
+        // puedes meter aquí opciones extra de medium-zoom
       },
-      prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
-      },
-    }),
+    },
+  },
 };
 
 export default config;

@@ -1,32 +1,38 @@
 ---
 sidebar_position: 3
 ---
+import Image from '@theme/IdealImage';
+
+# Mi doc
+
+
 # Ejemplo Formularios con n8n
 
 ## Enunciado
 ### En el IES Alonso de Ercilla, las incidencias de las aulas se registran en formularios en papel. Con el fin de agilizar su gestión, se plantea la digitalización de estos documentos mediante OCR, permitiendo que la información llegue de forma automática a un sistema digital de control de incidencias.
 
 ## Ejemplo de formularios
-<figure>
-  <img src="/img/n8n/i0.png" alt="img0" width="200" />
-</figure>
-<figure>
-  <img src="/img/n8n/i2.png" alt="img0" width="200" />
-</figure>
-<figure>
-  <img src="/img/n8n/i3.png" alt="img0" width="200" />
-</figure>
-<figure>
-  <img src="/img/n8n/i4.png" alt="img0" width="200" />
-</figure>
-<figure>
-  <img src="/img/n8n/i5.png" alt="img0" width="200" />
-</figure>
+
+
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+  gap: '1rem'
+}}>
+  <img src="/img/n8n/i0.png" alt="img0" />
+  <img src="/img/n8n/i1.png" alt="img1" />
+  <img src="/img/n8n/i2.png" alt="img2" />
+  <img src="/img/n8n/i3.png" alt="img3" />
+  <img src="/img/n8n/i4.png" alt="img4" />
+  <img src="/img/n8n/i5.png" alt="img5" />
+</div>
+
+
 
 
 ## SECUENCIA DE DATOS
 <figure>
-  <img src="/img/n8n/formulario.png" alt="formulario" width="800" />
+  <img src="/img/n8n/Formulario.png" alt="formulario" width="800" />
 </figure>
 
 
@@ -96,6 +102,46 @@ public static void main(String[] args) throws Exception {
             // 6. Parsear JSON con el texto reconocido
             JSONObject json = new JSONObject(responseBody);
             JSONArray results = json.getJSONArray("ParsedResults");
+
+            if (results.length() > 0) {
+                // Texto plano devuelto por OCR.space
+                String parsedText = results.getJSONObject(0).getString("ParsedText");
+                String[] lines = parsedText.split("\\r?\\n");
+
+                // 7. Extraer nombre, lugar y detalle (según la posición en el texto)
+                String nombre = lines[2].trim();
+                String lugar = lines[4].trim();
+                String detalle = lines[6].trim();
+
+                System.out.println("Nombre: " + nombre);
+                System.out.println("Lugar: " + lugar);
+                System.out.println("Detalle: " + detalle);
+
+                // 8. Construir JSON de salida para enviarlo a n8n
+                JSONObject salida = new JSONObject();
+                salida.put("nombre", nombre);
+                salida.put("lugar", lugar);
+                salida.put("detalle", detalle);
+
+                // 9. Crear request hacia el webhook de n8n
+                RequestBody body2 = RequestBody.create(
+                        salida.toString(),
+                        MediaType.parse("application/json; charset=utf-8")
+                );
+
+                Request request2 = new Request.Builder()
+                        .url("http://localhost:5678/webhook/registrar")
+                        .post(body2)
+                        .build();
+
+                // 10. Enviar JSON al webhook
+                try (Response response2 = client.newCall(request2).execute()) {
+                    System.out.println("Código respuesta: " + response2.code());
+                    System.out.println("Respuesta n8n: " + response2.body().string());
+                }
+            } else {
+                System.out.println("No se reconoció texto.");
+            }
 
         }
     }
