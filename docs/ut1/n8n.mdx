@@ -3,10 +3,8 @@ sidebar_position: 3
 ---
 import Image from '@theme/IdealImage';
 
-# Mi doc
 
-
-# Ejemplo Formularios con n8n
+# Ejemplo. Formularios con n8n.
 
 ## Enunciado
 ### En el IES Alonso de Ercilla, las incidencias de las aulas se registran en formularios en papel. Con el fin de agilizar su gestión, se plantea la digitalización de estos documentos mediante OCR, permitiendo que la información llegue de forma automática a un sistema digital de control de incidencias.
@@ -57,8 +55,20 @@ import Image from '@theme/IdealImage';
   <artifactId>json</artifactId>
   <version>20231013</version>
 </dependency>
+```
+
+**librería dotenv-java (seguridad para claves en control de versiones)**
+
+```xml
+<dependency>
+  <groupId>io.github.cdimascio</groupId>
+  <artifactId>dotenv-java</artifactId>
+  <version>3.0.0</version>
+</dependency>
 
 ```
+
+
 :::warning ATENCIÓN
 1. Al poner las dependencias deben ir en el nodo `<dependencies></dependencies>` (añádelo si no está).
 2. Despues de poner las dependencias en necesario sincronizar `maven` (icono 🔄️)

@@ -1,0 +1,93 @@
+---
+sidebar_position: 1
+---
+
+# Parte 1 Proyecto  
+## Diseño y elaboración de plantillas físicas
+
+### 1. Contexto del proyecto
+
+En este proyecto se va a simular un flujo completo de **digitalización y automatización de documentos**.  
+Los documentos serán primero **diseñados en papel**, después **digitalizados como imágenes**, y finalmente **procesados mediante herramientas de automatización (Dropbox, n8n, servicio Java y OCR)** para extraer y registrar su contenido.
+
+Esta primera fase se centra exclusivamente en el **diseño y creación de las plantillas físicas** de los documentos, que serán la base del resto del proceso.
+
+---
+
+### 2. Objetivo de la fase
+
+Diseñar, en grupos de tres personas, un **conjunto de documentos normalizados en papel** que puedan ser utilizados dentro de un entorno técnico o administrativo y que, posteriormente, se digitalizarán y procesarán automáticamente.
+
+Cada grupo deberá seleccionar **una temática de documento** (ver listado más abajo) y crear un **formato limpio, claro y estructurado**, teniendo en cuenta que el texto será leído mediante un sistema OCR.
+
+---
+
+### 3. Requisitos obligatorios de las plantillas
+
+Cada plantilla deberá cumplir los siguientes requisitos:
+
+- **Encabezado identificativo:** incluir nombre del documento y logotipo o nombre de la organización.  
+- **Número de documento:** cada hoja debe tener un número único, por ejemplo `DOC-001`, `DOC-002`, etc.  
+- **Fecha:** incluir siempre el campo de fecha de creación o emisión.  
+- **Campos de información estructurados:** texto, descripciones, tablas o firmas según el tipo de documento.  
+- **Diseño claro:** debe facilitar la lectura óptica posterior (espaciado suficiente, fuentes legibles, sin fondos oscuros).  
+- **Zona de firma o validación:** al menos una firma o campo de revisión debe estar presente.  
+
+---
+
+### 4. Temáticas disponibles
+
+Cada grupo elegirá **una de las siguientes temáticas** para diseñar su plantilla:
+
+1. **Informe de mantenimiento**  
+   Registro técnico de incidencias, reparaciones y tareas realizadas en equipos o instalaciones.
+
+2. **Parte de préstamo o cesión de material**  
+   Documento que autoriza y registra la entrega temporal de herramientas, dispositivos o equipos.
+
+3. **Solicitud de intervención técnica**  
+   Formulario para solicitar asistencia o soporte técnico ante una avería o incidencia.
+
+4. **Registro de asistencia a formación o reunión**  
+   Documento para registrar la participación de asistentes en una sesión formativa o reunión.
+
+5. **Autorización de salida o desplazamiento**  
+   Justificación escrita para autorizar la salida de una persona o grupo de trabajo fuera del centro o taller.
+
+6. **Acta de revisión o inspección**  
+   Documento que recoge los resultados de una verificación, control o inspección de sistemas o equipos.
+
+---
+
+### 5. Entregables
+
+Cada grupo deberá entregar:
+
+1. **Plantilla en formato digital (PDF o imagen escaneada)** de su diseño en papel.  
+2. **Documento complementario en Word o PDF** explicando:
+   - Nombre del documento y propósito.  
+   - Campos incluidos y su función.  
+   - Ejemplo completado a mano (fotografía o escaneado).  
+   - Breve justificación del diseño (por qué se eligieron esos campos y estructura).
+
+---
+
+
+### 6. Entrega
+
+- **Formato:** PDF o imagen escaneada de la plantilla + informe en Word o PDF.  
+- **Nombre de los archivos:**   
+GrupoX_Plantilla_Tema.pdf   
+GrupoX_Memoria_Tema.pdf   
+- **Fecha de entrega:** según indicación del profesor.
+
+---
+
+### 7. Recomendaciones
+
+- Mantén un diseño limpio, con márgenes amplios y textos alineados.  
+- Usa tipos de letra estándar (Arial, Calibri, Liberation Sans).  
+- Deja espacio suficiente entre los campos para escritura manual.  
+- Asegúrate de que el número de documento y la fecha estén siempre visibles.  
+- Revisa la ortografía y la coherencia de los campos antes de imprimir.
+
