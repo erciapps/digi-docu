@@ -1,5 +1,111 @@
 @import "tailwindcss";
 
+/* === ✅ Fix menú hamburguesa Docusaurus (Responsive y funcional) === */
+
+/* Panel lateral - solo visible en móviles */
+@media (max-width: 996px) {
+  .navbar-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999 !important;
+    background: var(--ifm-background-color);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+  }
+
+  .navbar-sidebar--active {
+    transform: translateX(0) !important;
+    display: block !important;
+  }
+
+  /* Espaciado interno del menú lateral */
+  .navbar-sidebar__items {
+    padding: 1rem 1.5rem 3rem 1.5rem;
+  }
+
+  /* Botón de cierre (X) */
+  .navbar-sidebar__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .navbar-sidebar__close:hover {
+    background: rgba(255, 102, 0, 0.15);
+    transform: rotate(90deg);
+  }
+}
+
+/* Modo claro */
+[data-theme='light'] .navbar-sidebar {
+  background-color: #ffffff !important;
+  color: #222 !important;
+  border-left: 1px solid #ddd;
+}
+[data-theme='light'] .navbar-sidebar__close svg {
+  color: #ff6600 !important;
+}
+
+/* Modo oscuro */
+[data-theme='dark'] .navbar-sidebar {
+  background-color: #121212 !important;
+  color: #eee !important;
+  border-left: 1px solid #1f1f1f;
+}
+[data-theme='dark'] .navbar-sidebar__close svg {
+  color: #ff8533 !important;
+}
+
+/* === 🍔 Icono menú hamburguesa (responsive y visible) === */
+.navbar__toggle {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 44px !important;
+  height: 44px !important;
+  cursor: pointer;
+  border: none;
+  background: none;
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.navbar__toggle:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Tamaño del ícono SVG (hamburguesa y X) */
+.navbar__toggle svg {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+[data-theme='light'] .navbar__toggle svg {
+  color: #ff6600;
+}
+[data-theme='dark'] .navbar__toggle svg {
+  color: #ff8533;
+}
+
+/* Evitar desplazamiento del contenido debajo del navbar */
+.main-wrapper {
+  margin-top: 4rem !important;
+}
+
+/* === 💡 Mejora en escritorio: ocultar el botón hamburguesa === */
+@media (min-width: 997px) {
+  .navbar__toggle {
+    display: none !important;
+  }
+}
+
 /* === 🚀 Espaciado inferior entre avisos y navegación === */
 .alert {
   border-radius: 10px;
