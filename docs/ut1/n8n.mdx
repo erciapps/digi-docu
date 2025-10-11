@@ -2,14 +2,26 @@
 sidebar_position: 3
 ---
 import Image from '@theme/IdealImage';
-
+import BrowserVideo from '@site/src/components/BrowserVideo';
 
 # Ejemplo. Formularios con n8n.
 
 ## Enunciado
 ### En el IES Alonso de Ercilla, las incidencias de las aulas se registran en formularios en papel. Con el fin de agilizar su gestión, se plantea la digitalización de estos documentos mediante OCR, permitiendo que la información llegue de forma automática a un sistema digital de control de incidencias.
-#### Enlace al ejercicio de clase:
-(https://www.youtube.com/watch?v=MKTu9jwtwp4&list=PL8MjdsmxW80oKBDd9x7SMuvHPDXJZfY5K)[https://www.youtube.com/watch?v=MKTu9jwtwp4&list=PL8MjdsmxW80oKBDd9x7SMuvHPDXJZfY5K]
+
+## Videotutoriales
+En este apartado podrás ver todo el proceso del desarrollo del proyecto.
+### Instalación
+ En este vídeo aprenderás paso a paso a instalar <strong>n8n</strong>, una potente herramienta de automatización. 
+Configuraremos <strong>Node.js</strong> en Windows, ejecutaremos n8n desde la consola y prepararemos su despliegue con <strong>Docker</strong>.
+
+<BrowserVideo url="https://www.youtube.com/watch?v=RSKeZlUXjJk" />
+
+### Envío automatizado de correos con Gmail y N8N
+En este vídeo aprenderemos a enviar correos automáticos con Gmail usando N8N, una herramienta de automatización. Veremos cómo generar la contraseña de aplicación de Google, configurar un flujo en N8N que reciba peticiones HTTP, y probarlo con Postman para enviar correos personalizados con asunto y mensaje desde un JSON. Ideal para entender cómo conectar servicios y automatizar tareas reales.
+
+<BrowserVideo url="https://www.youtube.com/watch?v=wT9G4iYpgIU" />
+
 
 ## Ejemplo de formularios
 
@@ -77,6 +89,8 @@ import Image from '@theme/IdealImage';
 :::
 
 1. Crea la clase `Formulario.java` y pega el siguiente método `main`:
+
+
 
 ```java
 public static void main(String[] args) throws Exception {
@@ -164,3 +178,5 @@ public static void main(String[] args) throws Exception {
 :::warning ATENCIÓN
 El tamaño máximo de la imagen debe ser de 1mb y en formano `.png`
 :::
+
+

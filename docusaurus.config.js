@@ -1,4 +1,6 @@
 import {themes as prismThemes} from 'prism-react-renderer';
+import autoprefixer from 'autoprefixer';
+import tailwindcss from '@tailwindcss/postcss';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -18,7 +20,6 @@ const config = {
   trailingSlash: false,
   onBrokenLinks: 'throw',
 
-  // ✅ Nueva forma de configurar advertencias de Markdown
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
@@ -31,15 +32,28 @@ const config = {
     locales: ['en'],
   },
 
+  // 🔌 Plugins
   plugins: [
     '@docusaurus/plugin-ideal-image',
-    'docusaurus-plugin-image-zoom',   // 👈 añadido el plugin de zoom
+    'docusaurus-plugin-image-zoom',
+
+    // 👇 Plugin integrado para Tailwind
+    function tailwindPlugin() {
+      return {
+        name: 'docusaurus-tailwindcss',
+        configurePostCss(postcssOptions) {
+          postcssOptions.plugins.push(tailwindcss);
+          postcssOptions.plugins.push(autoprefixer);
+          return postcssOptions;
+        },
+      };
+    },
   ],
 
+  // ⚙️ Preset clásico + integración CSS
   presets: [
     [
       'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           sidebarPath: './sidebars.js',
@@ -52,12 +66,14 @@ const config = {
           },
         },
         theme: {
-          customCss: './src/css/custom.css',
+          // 👇 Procesado por Tailwind y PostCSS
+          customCss: require.resolve('./src/css/custom.css'),
         },
       }),
     ],
   ],
 
+  // 🎨 Tema visual
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
@@ -66,6 +82,8 @@ const config = {
         alt: 'ErciApps',
         src: 'img/logo.svg',
         href: 'https://erciapps.sytes.net',
+            height: 32, // 🔹 fuerza tamaño vertical (px)
+    width: 32,  // 🔹 fuerza tamaño horizontal (px)
       },
       items: [
         {to: '/', label: 'INICIO', position: 'left'},
@@ -79,20 +97,21 @@ const config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['java', 'csharp', 'bash', 'python'],
     },
-
-    // 👇 configuración del zoom
     zoom: {
       selector: '.markdown img, .markdown picture img',
       background: {
         light: 'rgb(255, 255, 255)',
         dark: 'rgb(50, 50, 50)',
       },
-      config: {
-        // puedes meter aquí opciones extra de medium-zoom
-      },
     },
   },
+
+  // 🖋️ Fuente moderna
+  stylesheets: [
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap',
+  ],
 };
 
 export default config;
