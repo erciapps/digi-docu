@@ -116,19 +116,7 @@
   height: 22px !important;
 }
 
-/* Espaciado entre cards en mobile */
-@media (max-width: 996px) {
-  .DocCardList .row,
-  .docMainContainer .row,
-  .main-wrapper .container .row {
-    gap: 1rem !important;
-  }
-  .DocCardList .row > .col,
-  .docMainContainer .row > .col,
-  .main-wrapper .container .row > .col {
-    max-width: 100% !important;
-  }
-}
+
 
 /* === Tema claro === */
 [data-theme='light'] .DocCardList .card,
@@ -149,80 +137,6 @@
 /* === ✅ Fix menú hamburguesa Docusaurus (Responsive y funcional) === */
 
 /* Panel lateral - solo visible en móviles */
-@media (max-width: 996px) {
-  .navbar-sidebar {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 9999 !important;
-    background: var(--ifm-background-color);
-    transition: transform 0.3s ease-in-out;
-    overflow-y: auto;
-  }
-
-  .navbar-sidebar--active {
-    transform: translateX(0) !important;
-    display: block !important;
-  }
-
-/* Oculta el sidebar anterior al volver al menú principal */
-.navbar-sidebar__backdrop,
-.navbar-sidebar__items:not(.navbar-sidebar__items--show-secondary) .menu__list--show-secondary {
-  display: none !important;
-}
-/* Mejora del botón “Back to main menu” */
-.navbar-sidebar__back {
-  color: #ff6600 !important;
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0.6rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 102, 0, 0.05);
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-.navbar-sidebar__back:hover {
-  background: rgba(255, 102, 0, 0.15);
-  color: #ffa366 !important;
-}
-
-/* === 🧭 Arreglo visual del menú principal === */
-.navbar-sidebar .menu {
-  padding: 1rem;
-}
-.navbar-sidebar .menu__link {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-/* Corrige solapamiento al volver atrás */
-.navbar-sidebar__items--show-secondary .menu__list {
-  position: relative;
-  z-index: 5;
-}
-
-/* Estilo y transición para el cambio de menú */
-.navbar-sidebar__items {
-  transition: transform 0.25s ease-in-out, opacity 0.25s ease;
-  will-change: transform, opacity;
-}
-  /* Botón de cierre (X) */
-  .navbar-sidebar__close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.6rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-  .navbar-sidebar__close:hover {
-    background: rgba(255, 102, 0, 0.15);
-    transform: rotate(90deg);
-  }
-}
 
 /* Modo claro */
 [data-theme='light'] .navbar-sidebar {
@@ -281,46 +195,116 @@
   margin-top: 4rem !important;
 }
 
-/* === 🍔 Ocultar el menú hamburguesa fuera de móviles === */
-@media (min-width: 997px) {
-  .navbar__toggle {
-    display: none !important;
+/* En pantallas muy grandes, el texto se mantiene centrado */
+@media (min-width: 1400px) {
+  .markdown {
+    max-width: 1100px;
   }
-
+}
   /* Asegura que el sidebar no quede visible en escritorio */
   .navbar-sidebar {
     display: none !important;
     transform: none !important;
   }
-}
+
 
 
 /* === 🩹 FIX DEFINITIVO: Sidebar móvil Docusaurus (sin márgenes, sin duplicados) === */
+/* === 📱 Optimización completa para móviles === */
 @media (max-width: 996px) {
-  .navbar-sidebar {
-    width: 100vw !important;
-    height: 100vh !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: 0 !important;
-    background: var(--ifm-background-color) !important;
-    overflow-y: auto !important;
-    transform: none !important;
-    padding: 0 !important;
-    z-index: 9999 !important;
-    display: flex !important;
-    flex-direction: column;
-  }
 
-  
-
-  /* Ocultar correctamente el panel anterior al navegar al principal */
-  .navbar-sidebar__items:not(.navbar-sidebar__items--show-secondary)
-    .menu__list--show-secondary {
+  /* 🔹 Oculta el sidebar de documentación */
+  .theme-doc-sidebar-container {
     display: none !important;
   }
 
-  /* El panel secundario debe cubrir todo el contenido */
+  /* 🔹 Contenido principal ocupa todo el ancho */
+  .theme-doc-main {
+    width: 100% !important;
+    padding: 1rem !important;
+  }
+
+  /* 🔹 Espaciado entre tarjetas */
+  .DocCardList .row,
+  .docMainContainer .row,
+  .main-wrapper .container .row {
+    gap: 1rem !important;
+  }
+
+  .DocCardList .row > .col,
+  .docMainContainer .row > .col,
+  .main-wrapper .container .row > .col {
+    max-width: 100% !important;
+  }
+
+  /* === 🍔 Sidebar hamburguesa === */
+  .navbar-sidebar {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: var(--ifm-background-color) !important;
+    display: flex !important;
+    flex-direction: column;
+    overflow-y: auto !important;
+    z-index: 9999 !important;
+    transform: none !important;
+    padding: 0 !important;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* Cuando está activo */
+  .navbar-sidebar--active {
+    transform: translateX(0) !important;
+    display: block !important;
+  }
+
+  /* Botón “Back to main menu” */
+  .navbar-sidebar__back {
+    position: sticky;
+    top: 0;
+    background: var(--ifm-background-color);
+    color: #ff6600 !important;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    z-index: 10001;
+  }
+
+  .navbar-sidebar__back:hover {
+    background: rgba(255, 102, 0, 0.15);
+    color: #ffa366 !important;
+  }
+
+  /* Menú principal */
+  .navbar-sidebar .menu {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+
+  .navbar-sidebar .menu__list {
+    width: 100%;
+    padding: 0;
+  }
+
+  .navbar-sidebar .menu__link {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 0.55rem 0.75rem !important;
+  }
+
+  /* Animación y transición de paneles */
+  .navbar-sidebar__items {
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    will-change: transform, opacity;
+  }
+
+  /* Panel secundario (submenu) */
   .navbar-sidebar__items--show-secondary .menu__list--show-secondary {
     position: absolute !important;
     inset: 0;
@@ -330,49 +314,40 @@
     z-index: 10000;
   }
 
-  /* Botón "Back to main menu" siempre visible arriba */
-  .navbar-sidebar__back {
-    position: sticky;
-    top: 0;
-    background: var(--ifm-background-color);
-    padding: 1rem 1rem;
-    font-size: 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    z-index: 10001;
+  /* Ocultar panel anterior */
+  .navbar-sidebar__items:not(.navbar-sidebar__items--show-secondary)
+    .menu__list--show-secondary {
+    display: none !important;
   }
 
-  /* Ajustar lista principal para que no quede espacio */
-  .navbar-sidebar .menu {
-    margin: 0;
-    padding: 0.5rem 1rem;
-    width: 100%;
+  /* Botón de cierre (X) */
+  .navbar-sidebar__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease, transform 0.2s ease;
   }
 
-  /* Alinear items */
-  .navbar-sidebar .menu__list {
-    width: 100%;
-    padding: 0;
+  .navbar-sidebar__close:hover {
+    background: rgba(255, 102, 0, 0.15);
+    transform: rotate(90deg);
   }
 
-  /* Reducir márgenes visuales y mantener toque limpio */
-  .navbar-sidebar .menu__link {
-    padding: 0.55rem 0.75rem !important;
-    font-size: 1rem;
-  }
-
-  /* Suaviza la transición entre paneles */
-  .navbar-sidebar__items {
-    transition: transform 0.25s ease, opacity 0.25s ease;
-  }
-
-  /* Colores coherentes con tu esquema */
+  /* === 🎨 Tema oscuro y claro === */
   [data-theme='dark'] .navbar-sidebar {
     background: #0e0e0e !important;
+    color: #eee !important;
   }
+
   [data-theme='light'] .navbar-sidebar {
     background: #ffffff !important;
+    color: #222 !important;
   }
 }
+
 
 
 /* === 🚀 Espaciado inferior entre avisos y navegación === */
@@ -610,12 +585,13 @@
 }
 .menu__link:hover { transform: translateX(2px); }
 
-/* === 📝 Markdown (espaciado y legibilidad) === */
+/* === 🧾 Markdown (espaciado y legibilidad mejorados) === */
 .markdown {
   line-height: 1.75;
   font-size: 1.05rem;
   font-family: 'Inter', sans-serif;
-  max-width: 70ch;
+  width: 100%;
+  max-width: 900px; /* 🔹 ancho máximo legible en escritorio */
   margin: 0 auto;
   padding: 2rem 3rem;
 }
@@ -703,13 +679,3 @@ html[data-theme] * {
 }
 
 /* === En pantallas pequeñas: el sidebar pasa a ocupar toda la pantalla === */
-@media (max-width: 768px) {
-  .theme-doc-sidebar-container {
-    display: none !important; /* lo ocultamos en móviles */
-  }
-
-  .theme-doc-main {
-    width: 100% !important;
-    padding: 1rem !important;
-  }
-}
