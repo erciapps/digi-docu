@@ -75,14 +75,7 @@ const config = {
 
   // 🎨 Tema visual
   themeConfig: {
-     docs: {
-    toc: {
-      minHeadingLevel: 2,
-      maxHeadingLevel: 3,
-    },
-  },
-  hideableSidebar: true,
-  tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
+    
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: '',
