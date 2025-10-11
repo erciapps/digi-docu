@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 /* 🔹 Oculta el panel derecho del TOC */
 .theme-doc-toc-desktop {
   display: none !important;
@@ -116,7 +118,7 @@
 }
 
 /* Espaciado entre cards en mobile */
-@media (max-width: 996px) {
+@media (max-width: 1096px) {
   .DocCardList .row,
   .docMainContainer .row,
   .main-wrapper .container .row {
@@ -148,7 +150,7 @@
 /* === ✅ Fix menú hamburguesa Docusaurus (Responsive y funcional) === */
 
 /* Panel lateral - solo visible en móviles */
-@media (max-width: 996px) {
+@media (max-width: 1096px) {
   .navbar-sidebar {
     position: fixed !important;
     top: 0;
@@ -281,7 +283,7 @@
 }
 
 /* === 🍔 Ocultar el menú hamburguesa fuera de móviles === */
-@media (min-width: 997px) {
+@media (min-width: 1097px) {
   .navbar__toggle {
     display: none !important;
   }
@@ -295,7 +297,7 @@
 
 
 /* === 🩹 FIX DEFINITIVO: Sidebar móvil Docusaurus (sin márgenes, sin duplicados) === */
-@media (max-width: 996px) {
+@media (max-width: 1096px) {
   .navbar-sidebar {
     width: 100vw !important;
     height: 100vh !important;
