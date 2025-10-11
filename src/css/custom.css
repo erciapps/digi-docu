@@ -1,5 +1,41 @@
 @import "tailwindcss";
 
+/* 🔹 Oculta el panel derecho del TOC */
+.theme-doc-toc-desktop {
+  display: none !important;
+}
+
+/* 2️⃣ El área central del contenido se expande al máximo */
+.theme-doc-markdown,
+.theme-doc-markdown.markdown {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-right: 3rem !important;
+  padding-left: 3rem !important;
+}
+
+/* 3️⃣ Asegura que el layout no reserve huecos */
+.theme-doc-content {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* 4️⃣ Forzar que la columna central use todo el espacio horizontal */
+.theme-doc-layout {
+  display: flex !important;
+  grid-template-columns: 1fr !important;
+  justify-content: center !important;
+}
+
+/* 5️⃣ Reforzar estructura de la zona de contenido */
+.theme-doc-main {
+  flex: 1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
 /* === 🔶 Doc cards (índices de secciones) — robusto para Docusaurus v2 === */
 
 /* Contenedores posibles de las cards */

@@ -75,15 +75,24 @@ const config = {
 
   // 🎨 Tema visual
   themeConfig: {
+     docs: {
+    toc: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 3,
+    },
+  },
+  hideableSidebar: true,
+  tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'ErciApps',
+      title: '',
       logo: {
         alt: 'ErciApps',
-        src: 'img/logo.svg',
+        src: 'img/ercilogo.png',
+        target: '_self', // 🔹 abrir en la misma pestaña
         href: 'https://erciapps.sytes.net',
-            height: 32, // 🔹 fuerza tamaño vertical (px)
-    width: 32,  // 🔹 fuerza tamaño horizontal (px)
+            height: 40, // 🔹 fuerza tamaño vertical (px)
+    width: 40,  // 🔹 fuerza tamaño horizontal (px)
       },
       items: [
         {to: '/', label: 'INICIO', position: 'left'},
