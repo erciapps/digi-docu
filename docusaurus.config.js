@@ -57,6 +57,11 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          // 🔥 AGREGAR ESTO: Deshabilitar TOC lateral por defecto
+          sidebar: {
+            hideable: false,
+            autoCollapseCategories: false,
+          },
         },
         blog: {
           showReadingTime: true,
@@ -76,6 +81,20 @@ const config = {
   // 🎨 Tema visual y comportamiento del sitio
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
+
+    // 🔥 AGREGAR ESTO: Configuración para ocultar TOC
+    docs: {
+      sidebar: {
+        hideable: false,
+        autoCollapseCategories: false,
+      },
+    },
+
+    // 🔥 AGREGAR ESTO: Deshabilitar TOC en todas las páginas por defecto
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 4,
+    },
 
     navbar: {
       title: '',
