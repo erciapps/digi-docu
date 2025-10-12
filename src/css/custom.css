@@ -20,3 +20,266 @@
   grid-template-columns: 1fr !important;
   justify-content: center !important;
 }
+
+/* === 🔶 Doc cards (índices de secciones) — robusto para Docusaurus v2 === */
+
+/* Contenedores posibles de las cards */
+.DocCardList,
+.docMainContainer,
+.main-wrapper .container,
+.theme-doc-page {
+  /* separaciones generales */
+  --card-gap: 1.25rem;
+}
+
+/* Grid: que las columnas respiren */
+.DocCardList .row,
+.docMainContainer .row,
+.main-wrapper .container .row {
+  gap: var(--card-gap) !important;
+}
+
+
+
+/* === Card base === */
+.DocCardList .card,
+.docMainContainer .card,
+.main-wrapper .container .card,
+.container .row .col .card,
+.container .row .col .card.card--link {
+  background: var(--ifm-background-surface-color) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 18px !important;
+  padding: 1.25rem !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease !important;
+}
+
+/* Hover */
+.DocCardList .card:hover,
+.docMainContainer .card:hover,
+.main-wrapper .container .card:hover,
+.container .row .col .card:hover {
+  transform: translateY(-4px) !important;
+  border-color: #ff6600 !important;
+  box-shadow: 0 8px 24px rgba(255,102,0,0.25) !important;
+}
+
+/* Header (título) */
+.DocCardList .card .card__header h2,
+.docMainContainer .card .card__header h2,
+.container .card .card__header h2 {
+  color: #ff8533 !important;
+  font-weight: 700 !important;
+  font-size: 1.12rem !important;
+  letter-spacing: -0.015em !important;
+  margin: 0 0 .35rem 0 !important;
+}
+
+/* Body (descripción) */
+.DocCardList .card .card__body,
+.docMainContainer .card .card__body,
+.container .card .card__body {
+  color: var(--ifm-color-content-secondary) !important;
+  font-size: .95rem !important;
+  line-height: 1.55 !important;
+}
+
+/* Iconos (si los hay) */
+.DocCardList .card svg,
+.docMainContainer .card svg,
+.container .card svg {
+  color: #ff8533 !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+
+
+/* === Tema claro === */
+[data-theme='light'] .DocCardList .card,
+[data-theme='light'] .docMainContainer .card,
+[data-theme='light'] .main-wrapper .container .card {
+  background: #fff !important;
+  border: 1px solid #eee !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+}
+[data-theme='light'] .DocCardList .card:hover,
+[data-theme='light'] .docMainContainer .card:hover,
+[data-theme='light'] .main-wrapper .container .card:hover {
+  box-shadow: 0 8px 24px rgba(255,102,0,0.25) !important;
+}
+
+
+
+
+
+
+/* Panel lateral - solo visible en móviles */
+
+/* Modo claro */
+[data-theme='light'] .navbar-sidebar {
+  background-color: #ffffff !important;
+  color: #222 !important;
+  border-left: 1px solid #ddd;
+}
+[data-theme='light'] .navbar-sidebar__close svg {
+  color: #ff6600 !important;
+}
+
+/* Modo oscuro */
+[data-theme='dark'] .navbar-sidebar {
+  background-color: #121212 !important;
+  color: #eee !important;
+  border-left: 1px solid #1f1f1f;
+}
+[data-theme='dark'] .navbar-sidebar__close svg {
+  color: #ff8533 !important;
+}
+
+
+
+.navbar__toggle:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Tamaño del ícono SVG (hamburguesa y X) */
+.navbar__toggle svg {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+[data-theme='light'] .navbar__toggle svg {
+  color: #ff6600;
+}
+[data-theme='dark'] .navbar__toggle svg {
+  color: #ff8533;
+}
+
+/* Evitar desplazamiento del contenido debajo del navbar */
+.main-wrapper {
+  margin-top: 0 !important; /* antes: 4rem */
+}
+
+
+@media (max-width: 996px) {
+
+  .markdown {
+    max-width: 100% !important;
+    padding: 1rem !important;
+  }
+
+  /* 🔹 Oculta el sidebar de documentación en móvil */
+  .theme-doc-sidebar-container {
+    display: none !important;
+  }
+
+
+  /* 🔹 Espaciado entre tarjetas */
+  .DocCardList .row,
+  .docMainContainer .row,
+  .main-wrapper .container .row {
+    gap: 1rem !important;
+  }
+
+  .DocCardList .row > .col,
+  .docMainContainer .row > .col,
+  .main-wrapper .container .row > .col {
+    max-width: 100% !important;
+  }
+
+
+  /* ✅ Cuando el menú está activo (hamburguesa abierta) */
+  .navbar-sidebar--active {
+    transform: translateX(0) !important;
+  }
+
+  /* Botón “Back to main menu” */
+  .navbar-sidebar__back {
+    position: sticky;
+    top: 0;
+    background: var(--ifm-background-color);
+    color: #ff6600 !important;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    z-index: 10001;
+  }
+
+  .navbar-sidebar__back:hover {
+    background: rgba(255, 102, 0, 0.15);
+    color: #ffa366 !important;
+  }
+
+  /* Menú principal */
+  .navbar-sidebar .menu {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+
+  .navbar-sidebar .menu__list {
+    width: 100%;
+    padding: 0;
+  }
+
+  .navbar-sidebar .menu__link {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 0.55rem 0.75rem !important;
+  }
+
+  /* Animación y transición de paneles */
+  .navbar-sidebar__items {
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    will-change: transform, opacity;
+  }
+
+  /* Panel secundario (submenu) */
+  .navbar-sidebar__items--show-secondary .menu__list--show-secondary {
+    position: absolute !important;
+    inset: 0;
+    background: var(--ifm-background-color);
+    padding: 1rem 1rem 3rem 1rem;
+    overflow-y: auto !important;
+    z-index: 10000;
+  }
+
+  /* Ocultar panel anterior */
+  .navbar-sidebar__items:not(.navbar-sidebar__items--show-secondary)
+    .menu__list--show-secondary {
+    display: none !important;
+  }
+
+  /* Botón de cierre (X) */
+  .navbar-sidebar__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .navbar-sidebar__close:hover {
+    background: rgba(255, 102, 0, 0.15);
+    transform: rotate(90deg);
+  }
+
+  /* === 🎨 Tema oscuro y claro === */
+  [data-theme='dark'] .navbar-sidebar {
+    background: #0e0e0e !important;
+    color: #eee !important;
+  }
+
+  [data-theme='light'] .navbar-sidebar {
+    background: #ffffff !important;
+    color: #222 !important;
+  }
+}
+
