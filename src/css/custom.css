@@ -30,6 +30,7 @@
 .theme-doc-page {
   /* separaciones generales */
   --card-gap: 1.25rem;
+  margin-left: 40px;
 }
 
 /* Grid: que las columnas respiren */
@@ -180,6 +181,7 @@
   .docMainContainer .row,
   .main-wrapper .container .row {
     gap: 1rem !important;
+    
   }
 
   .DocCardList .row > .col,
