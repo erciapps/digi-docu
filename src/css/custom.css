@@ -488,3 +488,51 @@
   transition: all 0.2s ease;
 }
 .menu__link:hover { transform: translateX(2px); }
+
+
+
+
+
+/* === 🧾 Markdown (espaciado y legibilidad mejorados) === */
+.markdown {
+  line-height: 1.75;
+  font-size: 1.05rem;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  max-width: 900px; /* 🔹 ancho máximo legible en escritorio */
+  margin: 0 auto;
+  padding: 2rem 3rem;
+}
+.markdown h1, .markdown h2, .markdown h3 {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.markdown h1 {
+  font-size: 1.8rem;
+  border-bottom: 2px solid #ff6600;
+  padding-bottom: 0.3rem;
+}
+.markdown h2 { font-size: 1.4rem; color: #ff8533; }
+.markdown h3 { font-size: 1.2rem; color: #ff9c40; }
+.markdown p { margin-bottom: 1.25rem; }
+.markdown ul, .markdown ol { margin-left: 2rem; margin-bottom: 1.25rem; }
+
+/* === 💬 Código === */
+.markdown code {
+  border-radius: 6px;
+  padding: 0.15rem 0.5rem;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95rem;
+}
+.markdown pre {
+  border-radius: 12px;
+  padding: 1.25rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  border: 1px solid #242628;
+  overflow-x: auto;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+}
