@@ -93,7 +93,7 @@ export default function Home() {
         minHeight:'100vh',
         color:'#e2e8f0',
         background: `
-          radial-gradient(1200px 800px at 15% -10%, #223a7a 0%, rgba(34,58,122,0) 60%),
+          radial-gradient(1200px 800px at 15% -10%, #1d164aff 0%, rgba(34,58,122,0) 60%),
           linear-gradient(180deg, #0a0f21, #0c1230 60%, #0a0f21 100%)
         `
       }}>
