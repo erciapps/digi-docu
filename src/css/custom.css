@@ -1,112 +1,49 @@
 @import "tailwindcss";
 
-/* ===== 🔧 VARIABLES CSS ===== */
-:root {
-  --primary-color: #ff6600;
-  --primary-light: #ff8533;
-  --primary-lighter: #ff9c40;
-  --card-gap: 1.25rem;
-  --card-radius: 18px;
-  --card-padding: 1.25rem;
-  --transition-smooth: all 0.25s ease;
-}
 
-/* ===== 🔥 FIX LAYOUT PRINCIPAL - ELIMINAR CONFLICTOS ===== */
-
-/* 🔹 1. Ocultar TOC derecho completamente */
-.theme-doc-toc-desktop,
-.table-of-contents {
+/* 🔹 Oculta el panel derecho del TOC */
+.theme-doc-toc-desktop {
   display: none !important;
 }
 
-/* 🔹 2. Layout principal CORREGIDO */
+
+
+/* 3️⃣ Asegura que el layout no reserve huecos */
+.theme-doc-content {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* 4️⃣ Forzar que la columna central use todo el espacio horizontal */
 .theme-doc-layout {
   display: flex !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  grid-template-columns: 1fr !important;
+  justify-content: center !important;
 }
 
-/* 🔹 3. Contenedor de contenido principal - FIX CRÍTICO */
-.theme-doc-main {
-  flex: 1 1 100% !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
 
-/* 🔹 4. Contenido del documento - FIX ANCHO */
-.theme-doc-content {
-  flex: 1 1 100% !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
-}
 
-/* ===== 📄 MARKDOWN - ANCHO COMPLETO CORREGIDO ===== */
-.markdown {
-  line-height: 1.75;
-  font-size: 1.05rem;
-  font-family: 'Inter', sans-serif;
-  width: 100% !important;
-  max-width: 100% !important; /* 🔥 CAMBIO: 100% en lugar de limitado */
-  margin: 0 auto !important;
-  padding: 2rem 3rem !important;
-}
+/* === 🔶 Doc cards (índices de secciones) — robusto para Docusaurus v2 === */
 
-.markdown h1 {
-  font-size: 1.8rem;
-  border-bottom: 2px solid var(--primary-color);
-  padding-bottom: 0.3rem;
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-.markdown h2 { 
-  font-size: 1.4rem; 
-  color: var(--primary-light);
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-.markdown h3 { 
-  font-size: 1.2rem; 
-  color: var(--primary-lighter);
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-.markdown p, 
-.markdown ul, 
-.markdown ol {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-/* 🔹 5. Sidebar izquierdo FIXED */
-.theme-doc-sidebar-container {
-  flex: 0 0 250px !important;
-  max-width: 250px !important;
-  min-width: 220px !important;
-}
-
-/* ===== 🃏 TARJETAS DOCUMENTACIÓN ===== */
+/* Contenedores posibles de las cards */
 .DocCardList,
 .docMainContainer,
 .main-wrapper .container,
 .theme-doc-page {
-  gap: var(--card-gap);
+  /* separaciones generales */
+  --card-gap: 1.25rem;
 }
 
+/* Grid: que las columnas respiren */
 .DocCardList .row,
 .docMainContainer .row,
 .main-wrapper .container .row {
   gap: var(--card-gap) !important;
 }
 
+/* Cols: que no queden tan anchas en escritorio */
 .DocCardList .row > .col,
 .docMainContainer .row > .col,
 .main-wrapper .container .row > .col {
@@ -114,9 +51,7 @@
   max-width: 360px !important;
 }
 
-/* Base de tarjetas */
-.DocCard,
-.card,
+/* === Card base === */
 .DocCardList .card,
 .docMainContainer .card,
 .main-wrapper .container .card,
@@ -124,38 +59,34 @@
 .container .row .col .card.card--link {
   background: var(--ifm-background-surface-color) !important;
   border: 1px solid rgba(255,255,255,0.08) !important;
-  border-radius: var(--card-radius) !important;
-  padding: var(--card-padding) !important;
+  border-radius: 18px !important;
+  padding: 1.25rem !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
-  transition: var(--transition-smooth) !important;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease !important;
 }
 
-.DocCard:hover,
-.card:hover,
+/* Hover */
 .DocCardList .card:hover,
 .docMainContainer .card:hover,
 .main-wrapper .container .card:hover,
 .container .row .col .card:hover {
   transform: translateY(-4px) !important;
-  border-color: var(--primary-color) !important;
+  border-color: #ff6600 !important;
   box-shadow: 0 8px 24px rgba(255,102,0,0.25) !important;
 }
 
-/* Títulos y contenido de tarjetas */
-.DocCard .card__header h2,
-.card .card__header h2,
+/* Header (título) */
 .DocCardList .card .card__header h2,
 .docMainContainer .card .card__header h2,
 .container .card .card__header h2 {
-  color: var(--primary-light) !important;
+  color: #ff8533 !important;
   font-weight: 700 !important;
   font-size: 1.12rem !important;
   letter-spacing: -0.015em !important;
   margin: 0 0 .35rem 0 !important;
 }
 
-.DocCard .card__body,
-.card .card__body,
+/* Body (descripción) */
 .DocCardList .card .card__body,
 .docMainContainer .card .card__body,
 .container .card .card__body {
@@ -164,18 +95,18 @@
   line-height: 1.55 !important;
 }
 
-/* Iconos */
+/* Iconos (si los hay) */
 .DocCardList .card svg,
 .docMainContainer .card svg,
 .container .card svg {
-  color: var(--primary-light) !important;
+  color: #ff8533 !important;
   width: 22px !important;
   height: 22px !important;
 }
 
-/* ===== 🎨 TEMAS CLARO/OSCURO ===== */
-[data-theme='light'] .DocCard,
-[data-theme='light'] .card,
+
+
+/* === Tema claro === */
 [data-theme='light'] .DocCardList .card,
 [data-theme='light'] .docMainContainer .card,
 [data-theme='light'] .main-wrapper .container .card {
@@ -183,36 +114,39 @@
   border: 1px solid #eee !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
 }
-
-[data-theme='light'] .DocCard:hover,
-[data-theme='light'] .card:hover,
 [data-theme='light'] .DocCardList .card:hover,
 [data-theme='light'] .docMainContainer .card:hover,
 [data-theme='light'] .main-wrapper .container .card:hover {
   box-shadow: 0 8px 24px rgba(255,102,0,0.25) !important;
 }
 
-/* ===== 🍔 MENÚ HAMBURGUESA ===== */
-/* Panel lateral */
+
+
+/* === ✅ Fix menú hamburguesa Docusaurus (Responsive y funcional) === */
+
+/* Panel lateral - solo visible en móviles */
+
+/* Modo claro */
 [data-theme='light'] .navbar-sidebar {
   background-color: #ffffff !important;
   color: #222 !important;
   border-left: 1px solid #ddd;
 }
 [data-theme='light'] .navbar-sidebar__close svg {
-  color: var(--primary-color) !important;
+  color: #ff6600 !important;
 }
 
+/* Modo oscuro */
 [data-theme='dark'] .navbar-sidebar {
   background-color: #121212 !important;
   color: #eee !important;
   border-left: 1px solid #1f1f1f;
 }
 [data-theme='dark'] .navbar-sidebar__close svg {
-  color: var(--primary-light) !important;
+  color: #ff8533 !important;
 }
 
-/* Icono hamburguesa */
+/* === 🍔 Icono menú hamburguesa (responsive y visible) === */
 .navbar__toggle {
   display: flex !important;
   align-items: center;
@@ -223,7 +157,7 @@
   border: none;
   background: none;
   margin-left: 0.5rem;
-  transition: var(--transition-smooth);
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .navbar__toggle:hover {
@@ -231,154 +165,35 @@
   opacity: 0.9;
 }
 
+/* Tamaño del ícono SVG (hamburguesa y X) */
 .navbar__toggle svg {
   width: 32px !important;
   height: 32px !important;
 }
 
 [data-theme='light'] .navbar__toggle svg {
-  color: var(--primary-color);
+  color: #ff6600;
 }
 [data-theme='dark'] .navbar__toggle svg {
-  color: var(--primary-light);
+  color: #ff8533;
 }
 
+/* Evitar desplazamiento del contenido debajo del navbar */
 .main-wrapper {
-  margin-top: 0 !important;
+  margin-top: 0 !important; /* antes: 4rem */
 }
 
-/* Sidebar desktop oculto */
-.navbar-sidebar {
-  display: none !important;
-  transform: none !important;
-}
 
-/* ===== 📱 SIDEBAR MÓVIL ===== */
-@media (max-width: 996px) {
-  .markdown {
-    max-width: 100% !important;
-    padding: 1rem !important;
-  }
 
-  .theme-doc-sidebar-container {
-    display: none !important;
-  }
-
-  .DocCardList .row,
-  .docMainContainer .row,
-  .main-wrapper .container .row {
-    gap: 1rem !important;
-  }
-
-  .DocCardList .row > .col,
-  .docMainContainer .row > .col,
-  .main-wrapper .container .row > .col {
-    max-width: 100% !important;
-  }
-
-  /* Sidebar hamburguesa móvil */
+  /* Asegura que el sidebar no quede visible en escritorio */
   .navbar-sidebar {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background: var(--ifm-background-color) !important;
-    display: flex !important;
-    flex-direction: column;
-    overflow-y: auto !important;
-    z-index: 9999 !important;
-    transform: translateX(-100%);
-    padding: 0 !important;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .navbar-sidebar--active {
-    transform: translateX(0) !important;
-  }
-
-  .navbar-sidebar__back {
-    position: sticky;
-    top: 0;
-    background: var(--ifm-background-color);
-    color: var(--primary-color) !important;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    z-index: 10001;
-  }
-
-  .navbar-sidebar__back:hover {
-    background: rgba(255, 102, 0, 0.15);
-    color: #ffa366 !important;
-  }
-
-  .navbar-sidebar .menu {
-    margin: 0;
-    padding: 0.5rem 1rem;
-    width: 100%;
-  }
-
-  .navbar-sidebar .menu__list {
-    width: 100%;
-    padding: 0;
-  }
-
-  .navbar-sidebar .menu__link {
-    font-size: 1rem;
-    line-height: 1.6;
-    padding: 0.55rem 0.75rem !important;
-  }
-
-  .navbar-sidebar__items {
-    transition: transform 0.25s ease, opacity 0.25s ease;
-    will-change: transform, opacity;
-  }
-
-  .navbar-sidebar__items--show-secondary .menu__list--show-secondary {
-    position: absolute !important;
-    inset: 0;
-    background: var(--ifm-background-color);
-    padding: 1rem 1rem 3rem 1rem;
-    overflow-y: auto !important;
-    z-index: 10000;
-  }
-
-  .navbar-sidebar__items:not(.navbar-sidebar__items--show-secondary)
-    .menu__list--show-secondary {
     display: none !important;
+    transform: none !important;
   }
 
-  .navbar-sidebar__close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.6rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
 
-  .navbar-sidebar__close:hover {
-    background: rgba(255, 102, 0, 0.15);
-    transform: rotate(90deg);
-  }
 
-  [data-theme='dark'] .navbar-sidebar {
-    background: #0e0e0e !important;
-    color: #eee !important;
-  }
-
-  [data-theme='light'] .navbar-sidebar {
-    background: #ffffff !important;
-    color: #222 !important;
-  }
-}
-
-/* ===== ⚠️ ALERTAS ===== */
+/* === 🚀 Espaciado inferior entre avisos y navegación === */
 .alert {
   border-radius: 10px;
   padding: 1rem 1.25rem;
@@ -386,10 +201,10 @@
   border-left: 6px solid;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
   line-height: 1.6;
-  max-width: 100% !important;
 }
 
-/* Tema oscuro */
+/* === ⚠️ ALERTAS === */
+/* --- Tema oscuro --- */
 [data-theme='dark'] .alert--warning {
   border-left-color: #ffcc00;
   background: rgba(255, 204, 0, 0.12);
@@ -406,7 +221,7 @@
   color: #f1f1f1;
 }
 
-/* Tema claro */
+/* --- Tema claro --- */
 [data-theme='light'] .alert--warning {
   border-left-color: #ffcc00;
   background-color: #fff9e6;
@@ -423,8 +238,9 @@
   color: #222;
 }
 
+/* === 💡 Enlaces y código dentro de alertas === */
 .alert a {
-  color: var(--primary-color);
+  color: #ff6600;
   font-weight: 500;
   text-decoration: underline;
 }
@@ -440,7 +256,7 @@
   color: #c0392b;
 }
 
-/* ===== 📄 PAGINACIÓN ===== */
+/* === 📄 Navegación inferior === */
 .pagination-nav {
   margin-top: 3rem;
   padding-top: 1rem;
@@ -450,15 +266,15 @@
   background-color: rgba(255, 255, 255, 0.04);
   border-radius: 8px;
   padding: 0.6rem 1.2rem;
-  transition: var(--transition-smooth);
+  transition: all 0.25s ease;
 }
 .pagination-nav__link:hover {
   background-color: rgba(255, 102, 0, 0.15);
-  color: var(--primary-light) !important;
+  color: #ff8533 !important;
   transform: translateY(-1px);
 }
 
-/* ===== 🧭 BREADCRUMBS ===== */
+/* === 🧭 Breadcrumbs === */
 .breadcrumbs {
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
@@ -467,34 +283,38 @@
   align-items: center;
   gap: 0.4rem;
   margin-bottom: 1rem;
-  max-width: 100% !important;
 }
-
-.theme-doc-breadcrumbs .breadcrumbs__separator {
-  display: none !important;
-}
-
 .breadcrumbs__item:not(:last-child)::after {
   content: "›";
-  color: var(--primary-color);
+  color: #888;
   margin: 0 0.4rem;
-  font-weight: bold;
+  font-size: 1rem;
 }
-
 .breadcrumbs__link {
   text-decoration: none;
   transition: color 0.2s ease;
   font-size: 1.05rem;
 }
 .breadcrumbs__link:hover {
-  color: var(--primary-color) !important;
+  color: #ff6600 !important;
 }
 .breadcrumbs__item--active .breadcrumbs__link {
-  color: var(--primary-color) !important;
+  color: #ff6600 !important;
   font-weight: 600;
 }
+/* 🧭 Breadcrumbs — un solo separador personalizado */
+.theme-doc-breadcrumbs .breadcrumbs__separator {
+  display: none !important; /* Oculta el separador original de Docusaurus */
+}
 
-/* ===== 🎨 SYNTAX HIGHLIGHTING JAVA ===== */
+.breadcrumbs__item:not(:last-child)::after {
+  content: "›";
+  color: #ff6600;
+  margin: 0 0.4rem;
+  font-weight: bold;
+}
+
+/* === 🎨 Colores personalizados para código Java === */
 .language-java .token.keyword { color: #ff9c40; font-weight: 600; }
 .language-java .token.class-name { color: #00bfff; }
 .language-java .token.function { color: #ffcc66; }
@@ -504,11 +324,8 @@
 .language-java .token.operator { color: #9cdcfe; }
 .language-java .token.punctuation { color: #c5c8c6; }
 
-/* ===== ⌨️ ANIMACIÓN TYPING ===== */
-@keyframes typing { 
-  from { width: 0; } 
-  to { width: 100%; } 
-}
+/* === Terminal typing === */
+@keyframes typing { from { width: 0; } to { width: 100%; } }
 .typing {
   display: inline-block;
   overflow: hidden;
@@ -517,13 +334,13 @@
   animation: typing 2s steps(30, end);
 }
 
-/* ===== 🧭 NAVBAR ===== */
+/* === 🧭 NAVBAR === */
 .navbar {
   backdrop-filter: blur(16px);
   position: sticky;
   top: 0;
   z-index: 50;
-  transition: var(--transition-smooth);
+  transition: all 0.3s ease;
 }
 .navbar__inner {
   max-width: 1200px;
@@ -543,71 +360,57 @@
   width: 30px;
   height: 30px;
   border-radius: 10px;
-  transition: var(--transition-smooth);
+  transition: transform 0.3s ease;
 }
-.navbar__logo:hover { 
-  transform: rotate(-6deg) scale(1.1); 
-}
+.navbar__logo:hover { transform: rotate(-6deg) scale(1.1); }
 .navbar__title {
   font-weight: 600;
   font-size: 1.05rem;
   letter-spacing: -0.015em;
 }
-.navbar__items { 
-  display: flex; 
-  align-items: center; 
-  gap: 1.8rem; 
-}
+.navbar__items { display: flex; align-items: center; gap: 1.8rem; }
 
 /* Botón de cambio de tema */
 .navbar__items button, .navbar__items svg {
   width: 24px !important;
   height: 24px !important;
   cursor: pointer;
-  transition: var(--transition-smooth);
+  transition: transform 0.2s ease;
 }
 .navbar__items button:hover svg {
   transform: scale(1.15);
-  color: var(--primary-color) !important;
+  color: #ff6600 !important;
 }
 
-/* ===== 📚 SIDEBAR DOCUMENTACIÓN ===== */
+/* === 🎨 SIDEBAR === */
 .theme-doc-sidebar-container {
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   border-right: 1px solid #1f1f1f;
-  flex: 0 0 250px !important;
-  max-width: 250px !important;
-  min-width: 220px !important;
 }
-
 .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
-  color: var(--primary-color) !important;
+  color: #ff6600 !important;
   font-weight: 700;
 }
-
 .theme-doc-sidebar-item-category-level-2 .menu__link {
   font-weight: 400;
   padding-left: 1.6rem;
   position: relative;
-  transition: var(--transition-smooth);
+  transition: all 0.2s ease-in-out;
 }
-
 .theme-doc-sidebar-item-category-level-3 .menu__link {
   padding-left: 2.2rem;
   font-size: 0.9rem;
   position: relative;
 }
-
 .menu__link--active {
   background-color: rgba(255, 102, 0, 0.1) !important;
-  color: var(--primary-color) !important;
+  color: #ff6600 !important;
   font-weight: 600;
   border-radius: 6px;
   padding-left: 1.2rem !important;
   position: relative;
 }
-
 .menu__link--active::before {
   content: "";
   position: absolute;
@@ -615,28 +418,49 @@
   top: 0.6rem;
   width: 3px;
   height: 1rem;
-  background: var(--primary-color);
+  background: #ff6600;
   border-radius: 3px;
 }
-
 .menu__link {
   padding: 0.45rem 0.9rem;
   text-decoration: none;
-  transition: var(--transition-smooth);
+  transition: all 0.2s ease;
 }
+.menu__link:hover { transform: translateX(2px); }
 
-.menu__link:hover { 
-  transform: translateX(2px); 
+/* === 🧾 Markdown (espaciado y legibilidad mejorados) === */
+.markdown {
+  line-height: 1.75;
+  font-size: 1.05rem;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  max-width: 900px; /* 🔹 ancho máximo legible en escritorio */
+  margin: 0 auto;
+  padding: 2rem 3rem;
 }
+.markdown h1, .markdown h2, .markdown h3 {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.markdown h1 {
+  font-size: 1.8rem;
+  border-bottom: 2px solid #ff6600;
+  padding-bottom: 0.3rem;
+}
+.markdown h2 { font-size: 1.4rem; color: #ff8533; }
+.markdown h3 { font-size: 1.2rem; color: #ff9c40; }
+.markdown p { margin-bottom: 1.25rem; }
+.markdown ul, .markdown ol { margin-left: 2rem; margin-bottom: 1.25rem; }
 
-/* ===== 💬 CÓDIGO MARKDOWN ===== */
+/* === 💬 Código === */
 .markdown code {
   border-radius: 6px;
   padding: 0.15rem 0.5rem;
   font-family: "Fira Code", monospace;
   font-size: 0.95rem;
 }
-
 .markdown pre {
   border-radius: 12px;
   padding: 1.25rem;
@@ -648,24 +472,17 @@
   margin: 1.5rem 0;
 }
 
-/* Tema oscuro código */
-[data-theme='dark'] .markdown { 
-  color: #e8e8e8; 
-}
+/* === 🌙 Tema oscuro === */
+[data-theme='dark'] .markdown { color: #e8e8e8; }
 [data-theme='dark'] .markdown pre {
   background: #111315 !important;
   color: #f1f1f1;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
-[data-theme='dark'] .markdown code { 
-  background-color: rgba(255,255,255,0.07); 
-  color: var(--primary-light); 
-}
+[data-theme='dark'] .markdown code { background-color: rgba(255,255,255,0.07); color: #ff8533; }
 
-/* Tema claro código */
-[data-theme='light'] .markdown { 
-  color: #222; 
-}
+/* === 🌞 Tema claro === */
+[data-theme='light'] .markdown { color: #222; }
 [data-theme='light'] .markdown pre {
   background: #f0f0f0 !important;
   color: #222;
@@ -677,82 +494,89 @@
   color: #d35400;
 }
 
-/* ===== 🧩 ESPACIADO TARJETAS ===== */
+/* === 🕶️ Transición suave === */
+html[data-theme] * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+/* === 🩹 FIX: Evitar el gran espacio lateral en escritorio === */
+.theme-doc-sidebar-container {
+  flex: 0 0 250px !important; /* Sidebar de ancho fijo */
+  max-width: 250px !important;
+  min-width: 220px !important;
+}
+
+
+
+/* Ajuste del layout general para eliminar márgenes raros */
+.theme-doc-layout {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  gap: 0 !important;
+}
+
+
+/* Y opcionalmente, ajusta el contenido markdown */
+.markdown {
+  padding-left: 1rem !important;
+  padding-right: 2rem !important;
+}
+
+.theme-doc-main {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  max-width: none !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+.theme-doc-content {
+  padding-top: 1.5rem !important;
+  padding-bottom: 3rem !important;
+}
+
+/* === 🧩 Espaciado y margen entre tarjetas de DocCardList — versión final limpia === */
 .DocCardList {
-  padding: 1.5rem 1rem !important;
+  padding: 1.5rem 1rem !important; /* separa el bloque completo del resto */
 }
 
 .DocCardList .row {
-  gap: 1.5rem !important;
+  gap: 1.5rem !important; /* espacio entre tarjetas */
   justify-content: flex-start !important;
 }
 
+/* Tarjetas individuales */
 .DocCardList .card {
-  margin: 0.75rem !important;
-  border-radius: var(--card-radius) !important;
-  padding: var(--card-padding) !important;
-  transition: var(--transition-smooth);
+  margin: 0.75rem !important; /* separación entre tarjetas */
+  border-radius: 18px !important;
+  padding: 1.5rem !important;
+  transition: all 0.25s ease;
 }
 
+/* Evita que se pegue al borde inferior */
 .DocCardList .card:last-child {
   margin-bottom: 2rem !important;
 }
 
+/* Añade margen lateral extra al conjunto */
 .theme-doc-content .DocCardList {
   margin-left: 1.5rem !important;
   margin-right: 1.5rem !important;
 }
 
-/* ===== 🎭 TRANSICIONES SUAVES ===== */
-html[data-theme] * {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
+/* 
 
-/* ===== 📱 MEDIA QUERIES ===== */
 @media (max-width: 996px) {
   .DocCardList {
     padding: 1rem 0.5rem !important;
   }
-  
   .DocCardList .row {
     gap: 1rem !important;
   }
-  
   .DocCardList .card {
     margin: 0.5rem !important;
     padding: 1.25rem !important;
   }
-}
-
-@media (max-width: 768px) {
-  .markdown {
-    padding: 1rem 0.5rem !important;
-  }
-  
-  .theme-doc-content .DocCardList {
-    margin-left: 0.5rem !important;
-    margin-right: 0.5rem !important;
-  }
-}
-
-/* 🔥 FIX CRÍTICO: Eliminar cualquier restricción de ancho en el layout */
-.container,
-.container-fluid,
-.main-wrapper {
-  max-width: 100% !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Asegurar que el grid layout sea correcto */
-.theme-doc-layout {
-  grid-template-columns: 250px 1fr !important;
-  gap: 0 !important;
-}
-
-/* FIX final para el contenido markdown */
-.markdown > * {
-  max-width: 100% !important;
-  width: 100% !important;
-}
+} 
+*/
