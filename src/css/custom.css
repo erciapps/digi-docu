@@ -536,3 +536,31 @@
   line-height: 1.6;
   margin: 1.5rem 0;
 }
+
+
+/* === 🌙 Tema oscuro === */
+[data-theme='dark'] .markdown { color: #e8e8e8; }
+[data-theme='dark'] .markdown pre {
+  background: #111315 !important;
+  color: #f1f1f1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+[data-theme='dark'] .markdown code { background-color: rgba(255,255,255,0.07); color: #ff8533; }
+
+/* === 🌞 Tema claro === */
+[data-theme='light'] .markdown { color: #222; }
+[data-theme='light'] .markdown pre {
+  background: #f0f0f0 !important;
+  color: #222;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+[data-theme='light'] .markdown code {
+  background-color: #fff3e0;
+  color: #d35400;
+}
+
+/* === 🕶️ Transición suave === */
+html[data-theme] * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
