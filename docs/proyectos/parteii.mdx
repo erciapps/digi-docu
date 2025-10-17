@@ -35,17 +35,12 @@ El objetivo es simular el proceso de **digitalización inteligente de documentos
    Escanear o fotografiar el documento físico completado.
 
 2. **Envío a la API OCR:**  
-   Usar un servicio (por ejemplo, **OCR.Space**, **Google Vision API**, **Tesseract OCR**, o un **servicio local en Java o Python**) que reciba la imagen y devuelva el texto o los campos detectados.
+   Usa el servicio **OCR.Space** para que reciba la imagen y devuelva el texto y los campos detectados en formato JSON.
 
 3. **Recepción y análisis del JSON:**  
    - Comprobar la estructura del JSON devuelto.  
    - Identificar los campos reconocidos (por ejemplo: fecha, nombre, firma, observaciones…).  
    - Comparar con los campos de la plantilla original.
-
-4. **Visualización o registro de resultados:**  
-   - Mostrar el JSON en una interfaz simple (web o Java Swing).  
-   - *(Opcional)* Guardar los datos extraídos en un archivo o base de datos.  
-
 ---
 
 ### 4. Requisitos mínimos
@@ -60,10 +55,9 @@ Cada grupo deberá demostrar:
 
 ### 5. Entregables
 
-1. **Imagen escaneada** del documento físico completado.  
+1. **Imagen escaneada (foto con el móvil)** del documento físico completado.  
 2. **Link al repositorio en GitHub del proyecto** con el código desarrollado y comentarios del json creado.  
 3. **Esquema del JSON** que será enviado al servidor n8n.  
-
 ---
 
 
