@@ -1,0 +1,70 @@
+---
+sidebar_position: 3
+---
+import TerminalBox from '@site/src/components/TerminalBox';
+import Terminal from '@site/src/components/Terminal'
+import RetroTerminal from '@site/src/components/RetroTerminal';
+import CodeWindow from '@site/src/components/CodeWindow';
+import CookiePopup from '@site/src/components/CookiePopup';
+import BrowserVideo from '@site/src/components/BrowserVideo';
+
+# Parte 2 Proyecto  
+
+## Digitalización y procesamiento automático de documentos
+
+### 1. Contexto
+
+En esta fase se continuará con el flujo iniciado en la **Parte 1**.  
+Cada grupo ya dispone de un **documento físico diseñado y completado a mano**, que ahora deberá ser **digitalizado (escaneado o fotografiado)** y **procesado automáticamente** mediante un sistema OCR y una API que transforme la información en formato estructurado (**JSON**).  
+
+El objetivo es simular el proceso de **digitalización inteligente de documentos**, similar al que utilizan muchas empresas para automatizar la introducción de datos en sus sistemas.
+
+---
+
+### 2. Objetivo de la fase
+
+- Digitalizar los documentos físicos creados en la Parte 1.  
+- Enviar las imágenes resultantes a una API que procese el contenido (texto y estructura).  
+- Analizar y visualizar el resultado en formato **JSON**, comprobando cómo la información del documento físico se traduce a datos digitales.
+
+---
+
+### 3. Flujo de trabajo general
+
+1. **Digitalización:**  
+   Escanear o fotografiar el documento físico completado.
+
+2. **Envío a la API OCR:**  
+   Usar un servicio (por ejemplo, **OCR.Space**, **Google Vision API**, **Tesseract OCR**, o un **servicio local en Java o Python**) que reciba la imagen y devuelva el texto o los campos detectados.
+
+3. **Recepción y análisis del JSON:**  
+   - Comprobar la estructura del JSON devuelto.  
+   - Identificar los campos reconocidos (por ejemplo: fecha, nombre, firma, observaciones…).  
+   - Comparar con los campos de la plantilla original.
+
+4. **Visualización o registro de resultados:**  
+   - Mostrar el JSON en una interfaz simple (web o Java Swing).  
+   - *(Opcional)* Guardar los datos extraídos en un archivo o base de datos.  
+
+---
+
+### 4. Requisitos mínimos
+
+Cada grupo deberá demostrar:
+
+- Envío correcto de una **imagen escaneada** a la API OCR.  
+- Recepción del **JSON con el texto reconocido**.  
+- Breve **análisis del resultado**, indicando si la lectura fue correcta, qué errores o limitaciones se observaron, etc.
+- Adaptación del JSON recibido con los campos necesario. Es decir, crea el JSON que luego será enviado al servidor n8n.
+---
+
+### 5. Entregables
+
+1. **Imagen escaneada** del documento físico completado.  
+2. **Link al repositorio en GitHub del proyecto** con el código desarrollado y comentarios del json creado.  
+3. **Esquema del JSON** que será enviado al servidor n8n.  
+
+---
+
+
+<!--<CookiePopup />-->

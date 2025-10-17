@@ -58,7 +58,6 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // ❌ QUITAR la configuración sidebar de aquí
         },
         blog: {
           showReadingTime: true,
@@ -106,7 +105,9 @@ const config = {
         },
         items: [
           { to: '/', label: 'INICIO', position: 'left' },
-          { to: '/docs/category/ut1---entornos-it-y-ot', label: 'UT1', position: 'left' },
+          { to: '/docs/category/teoría', label: 'Teoría', position: 'left' },
+          { to: '/docs/category/ejemplos', label: 'Ejemplos', position: 'left' },
+          { to: '/docs/category/proyectos', label: 'Proyectos', position: 'left' },
         ],
       },
 

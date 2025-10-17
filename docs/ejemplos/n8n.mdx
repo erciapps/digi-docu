@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 hide_table_of_contents: false
 ---
 import Image from '@theme/IdealImage';
@@ -80,7 +80,7 @@ En este vídeo se explica como realizar la conexión con DropBox.
 1. Crea un nuevo proyecto llamado `Incidencias` desde el IDE IntelliJ IDEA en Maven.
 2. Añade las siguientes dependencias en el archivo `pom.xml`: 
       
-**OkHttp (para las peticiones HTTP)**
+### **OkHttp (para las peticiones HTTP)**
 ```xml
 <dependency>
     <groupId>com.squareup.okhttp3</groupId>
@@ -89,7 +89,7 @@ En este vídeo se explica como realizar la conexión con DropBox.
 </dependency>
 ```
 
-**org.json (para parsear y construir JSON)**
+### **org.json (para parsear y construir JSON)**
 
 ```xml
 <dependency>
@@ -99,7 +99,7 @@ En este vídeo se explica como realizar la conexión con DropBox.
 </dependency>
 ```
 
-**librería dotenv-java (seguridad para claves en control de versiones)**
+### **librería dotenv-java (seguridad para claves en control de versiones)**
 
 ```xml
 <dependency>
@@ -110,6 +110,14 @@ En este vídeo se explica como realizar la conexión con DropBox.
 
 ```
 
+### **Spark Java (para crear un servicio web ligero)**
+```xml
+<dependency>
+    <groupId>com.sparkjava</groupId>
+    <artifactId>spark-core</artifactId>
+    <version>2.9.4</version>
+</dependency>
+```
 
 :::warning ATENCIÓN
 1. Al poner las dependencias deben ir en el nodo `<dependencies></dependencies>` (añádelo si no está).
@@ -206,5 +214,99 @@ public static void main(String[] args) throws Exception {
 :::warning ATENCIÓN
 El tamaño máximo de la imagen debe ser de 1mb y en formano `.png`
 :::
+
+### CÓDIGO Servidor
+Mediante el siguiente código podemos transformar nuestra aplicación, en un pequeño servidro API Rest que 
+recibiría una petición HTTP mediante POST en el puerto 8080.
+
+:::info Dependencias
+No te olvides de poner la depencencia necesaria SparkJava
+:::
+
+```java
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Dotenv dotenv = Dotenv.load();
+        OkHttpClient client = new OkHttpClient();
+        // Servidor embebido con SparkJava (simplísimo)
+        spark.Spark.port(8080);
+        post("/upload", (req, res) -> {
+                    byte[] fileBytes = req.bodyAsBytes();
+                    String base64 = java.util.Base64.getEncoder().encodeToString(fileBytes);
+
+            String base64Image = "data:image/png;base64," + base64;
+            String encodedImage = URLEncoder.encode(base64Image, StandardCharsets.UTF_8);
+                    // 3. Construir el cuerpo del POST para OCR.space
+                    String body = "apikey=" + dotenv.get("APIKEY")
+                            + "&language=spa"
+                            + "&OCREngine=2"
+                            + "&isOverlayRequired=true"
+                            + "&scale=true"
+                            + "&base64Image=" + encodedImage;
+
+                    // 4. Crear la petición HTTP a OCR.space
+                    Request request = new Request.Builder()
+                            .url("https://api.ocr.space/parse/image")
+                            .post(RequestBody.create(body, MediaType.parse("application/x-www-form-urlencoded")))
+                            .build();
+
+
+            // 5. Ejecutar la petición y obtener la respuesta
+            try (Response response = client.newCall(request).execute()) {
+                String responseBody = response.body().string();
+                System.out.println("Respuesta OCR: " + responseBody);
+
+                // 6. Parsear JSON con el texto reconocido
+                JSONObject json = new JSONObject(responseBody);
+                JSONArray results = json.getJSONArray("ParsedResults");
+
+                if (results.length() > 0) {
+                    // Texto plano devuelto por OCR.space
+                    String parsedText = results.getJSONObject(0).getString("ParsedText");
+                    String[] lines = parsedText.split("\\r?\\n");
+
+                    // 7. Extraer nombre, lugar y detalle (según la posición en el texto)
+                    String nombre = lines[2].trim();
+                    String lugar = lines[4].trim();
+                    String detalle = lines[6].trim();
+
+                    System.out.println("Nombre: " + nombre);
+                    System.out.println("Lugar: " + lugar);
+                    System.out.println("Detalle: " + detalle);
+
+                    // 8. Construir JSON de salida para enviarlo a n8n
+                    JSONObject salida = new JSONObject();
+                    salida.put("nombre", nombre);
+                    salida.put("lugar", lugar);
+                    salida.put("detalle", detalle);
+                    // 9. Crear request hacia el webhook de n8n
+                    RequestBody body2 = RequestBody.create(
+                            salida.toString(),
+                            MediaType.parse("application/json; charset=utf-8")
+                    );
+
+
+                    Request request2 = new Request.Builder()
+                            .url("http://localhost:5678/webhook/incidencias")
+                            .post(body2)
+                            .build();
+
+                    // 10. Enviar JSON al webhook
+                    try (Response response2 = client.newCall(request2).execute()) {
+                        System.out.println("Código respuesta: " + response2.code());
+                        System.out.println("Respuesta n8n: " + response2.body().string());
+                    }
+                } else {
+                    System.out.println("No se reconoció texto.");
+                }
+
+            }
+            JSONObject salida = new JSONObject();
+            salida.put("ruta_imagen", "imagen");
+            return "OK"; // Spark exige un return en la lambda
+        });
+    }
+}
+```
 
 

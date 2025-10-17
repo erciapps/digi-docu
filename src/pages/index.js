@@ -124,18 +124,47 @@ export default function Home() {
           <article className="lift-card" style={cardStyle('#0a1930','#0d47a1')}>
             <div className="glow" style={glowStyle}></div>
             <span style={pill('#B58900')}>1ªEV</span>
-            <h3 style={title}>UT1 - Digitalización. Creación de entornos IT y OT </h3>
+            <h3 style={title}>TEORÍA </h3>
             <p style={desc}>
               Digitalización. Creación de entornos IT y OT
             </p>
             <div style={{ textAlign: 'center' }}>
-              <a href="/docs/category/ut1---entornos-it-y-ot" style={btn('#B58900')}>
+              <a href="/docs/category/teoría" style={btn('#B58900')}>
                 IR <span style={arrow}>→</span>
               </a>
             </div>
             
           </article>
 
+      <article className="lift-card" style={cardStyle('#0a1930','#0d47a1')}>
+            <div className="glow" style={glowStyle}></div>
+            <span style={pill('#B58900')}>1ªEV</span>
+            <h3 style={title}>EJEMPLOS </h3>
+            <p style={desc}>
+              Ejemplos desarrollados en clase
+            </p>
+            <div style={{ textAlign: 'center' }}>
+              <a href="/docs/category/ejemplos" style={btn('#B58900')}>
+                IR <span style={arrow}>→</span>
+              </a>
+            </div>
+            
+          </article>
+
+      <article className="lift-card" style={cardStyle('#0a1930','#0d47a1')}>
+            <div className="glow" style={glowStyle}></div>
+            <span style={pill('#B58900')}>1ªEV</span>
+            <h3 style={title}>PROYECTOS </h3>
+            <p style={desc}>
+              Espacio dedicado a proyectos
+            </p>
+            <div style={{ textAlign: 'center' }}>
+              <a href="/docs/category/proyectos" style={btn('#B58900')}>
+                IR <span style={arrow}>→</span>
+              </a>
+            </div>
+            
+          </article>
          
 
 
